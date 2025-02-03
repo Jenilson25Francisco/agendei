@@ -1,18 +1,25 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Logo from "../../assets/logo.png"
 import Cover from "../../assets/fundo.png"
 import { Button } from "../../components/button"
 import { Input } from "../../components/input"
 
 export function Login() {
+
+    const navigate = useNavigate()
+
+    function handleSignIn() {
+        navigate("/home")
+    }
+
+
     return (
-        <div className="h-screen flex">
-            <div className="w-[50%] flex flex-col items-center justify-center">
+        <div className="">
+            <div className="h-screen grid grid-cols-1 sm:grid-cols-2 w-full">
+            <div className="flex flex-col items-center justify-center">
                 <img
                     src={Logo}
                     alt="agendei"
-                    width={165}
-                    height={37.95}
                     className="mt-16"
                 />
                 <p className="text-center font-bold text-2xl leading-8 mt-11">
@@ -24,17 +31,17 @@ export function Login() {
 
                 <form className="flex flex-col items-center justify-center mt-6 space-y-4">
                     <Input placeholder="E-mail" />
-                    <Input placeholder="Senha" />
-                    <Button text="Acessar" />
+                    <Input placeholder="Senha" type="password" />
+                    <Button text="Acessar" onClick={handleSignIn} />
                 </form>
 
-                <span className="mt-auto mb-1">Não tenho conta
-                    <Link to="/signup" className="text-blue-500 mx-2" >Criar conta agora</Link>
+                <span className="mt-auto mb-1">Não tem uma conta?
+                    <Link to="/signup" className="text-blue-500 mx-2 mt-48 mb-5" >Criar conta agora</Link>
                 </span>
             </div>
-            <div className="w-[50%] h-full">
-                <img src={Cover} alt="capa" className="object-fill" />
-            </div>
+            
+                <img src={Cover} alt="capa" className="h-full object-cover object-center"/>
+                </div>
         </div>
     )
 }
